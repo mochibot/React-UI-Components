@@ -1,0 +1,21 @@
+.footer-container {
+  width: 85%;
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  color: darkgray;
+  font-size: 16px;
+  margin-right: 6%;
+}
+
+.icon-share, .icon-like {
+  display: flex;
+  align-items: center;
+}
+
+.icon p {
+  margin-left: 20%;
+}
