@@ -6,9 +6,7 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-
 const Footer = () => {
-
   return (
     <div className={'footer-container'}>
       <div className={'icon icon-comment'}>
@@ -28,5 +26,8 @@ const Footer = () => {
     </div>
   )
 }
+
+
+
 
 export default Footer;
