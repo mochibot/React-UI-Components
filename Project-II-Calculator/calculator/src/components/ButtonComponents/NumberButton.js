@@ -2,7 +2,7 @@ import React from 'react';
 import './Button.scss';
 
 const NumberButton = (props) => {
-  return <div className='number-btn'>{props.number}</div>;
+  return <button className='number-btn' onClick={props.onClick} data-value={props.value}>{props.value}</button>;
 }
 
 export default NumberButton;

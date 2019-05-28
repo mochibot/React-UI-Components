@@ -2,7 +2,7 @@ import React from 'react';
 import './Button.scss';
 
 const OperationButton = (props) => {
-  return <div className='operation-btn'>{props.operation}</div>;
+  return <button className='operation-btn'>{props.operation}</button>;
 }
 
 export default OperationButton;

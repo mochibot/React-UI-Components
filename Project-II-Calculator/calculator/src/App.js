@@ -5,15 +5,31 @@ import ActionButton from './components/ButtonComponents/ActionButton'
 import NumberButton from './components/ButtonComponents/NumberButton'
 import OperationButton from './components/ButtonComponents/OperationButton'
 
-const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-const operations = ['÷', '×', '-', '+', '='];
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       total: 0
     }
+    this.numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    this.operations = ['÷', '×', '-', '+', '='];
+
+    this.handleClick = this.handleClick.bind(this);
+    this.clearClick = this.clearClick.bind(this);
+  }
+
+  handleClick(event) {
+    const value = event.target.getAttribute('data-value');
+    this.setState({
+      total: value
+    })
+  }
+
+  clearClick(event) {
+    this.setState({
+      total: 0
+    })
   }
   
   render() {
@@ -22,14 +38,14 @@ class App extends React.Component {
         <CalculatorDisplay total={this.state.total}/>
         <div className='btn-container'>
           <div className='btn-left'>
-            <ActionButton action={'clear'} />
+            <ActionButton action={'clear'} onClick={this.clearClick} />
             <div className ='number-pad'>
-              {numbers.map(item => <NumberButton number={item} key={item}/>)}
+              {this.numbers.map(item => <NumberButton value={item} key={item} onClick={this.handleClick} />)}
             </div>
-            <ActionButton action={0} />
+            <ActionButton action={0} onClick={this.clearClick}/>
           </div>
           <div className='btn-right'>
-            {operations.map(item => <OperationButton operation={item} key={item}/>)}
+            {this.operations.map(item => <OperationButton operation={item} key={item} />)}
           </div>
         </div>
       </div>
