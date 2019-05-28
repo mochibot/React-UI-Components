@@ -5,26 +5,51 @@ import ActionButton from './components/ButtonComponents/ActionButton'
 import NumberButton from './components/ButtonComponents/NumberButton'
 import OperationButton from './components/ButtonComponents/OperationButton'
 
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const operations = ['÷', '×', '-', '+', '='];
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      total: 0
+    }
+  }
+  
+  render() {
+    return (
+      <div className='calculator-container'>
+        <CalculatorDisplay total={this.state.total}/>
+        <div className='btn-container'>
+          <div className='btn-left'>
+            <ActionButton action={'clear'} />
+            <div className ='number-pad'>
+              {numbers.map(item => <NumberButton number={item} key={item}/>)}
+            </div>
+            <ActionButton action={0} />
+          </div>
+          <div className='btn-right'>
+            {operations.map(item => <OperationButton operation={item} key={item}/>)}
+          </div>
+        </div>
+      </div>
+    );
+  };
+}
+
+
+
+
+
+/* 
+commenting out MVP code to work on stretch
+
 const App = () => {
   const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const operations = ['÷', '×', '-', '+', '='];
 
   return (
     <div className='calculator-container'>
-      {/* commenting out starter code
-      <h3>Welcome to React Calculator</h3>
-      <p>
-        We have given you a starter project. You'll want to build out your
-        components in their respective files, remove this code and replace it
-        with the proper components.
-      </p>
-      <p>
-        <strong>
-          Don't forget to `default export` your components and import them here
-          inside of this file in order to make them work.
-        </strong>
-      </p>
-      */}
       <CalculatorDisplay />
       <div className='btn-container'>
         <div className='btn-left'>
@@ -42,4 +67,7 @@ const App = () => {
   );
 };
 
+*/
+
 export default App;
+
