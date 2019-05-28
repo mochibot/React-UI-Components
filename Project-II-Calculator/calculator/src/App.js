@@ -28,8 +28,11 @@ const App = () => {
       <CalculatorDisplay />
       <div className='btn-container'>
         <div className='btn-left'>
-          <ActionButton action={'CLEAR'} />
-          {numbers.map(item => <NumberButton number={item}/>)}
+          <ActionButton action={'clear'} />
+          <div className ='number-pad'>
+            {numbers.map(item => <NumberButton number={item}/>)}
+          </div>
+          <ActionButton action={0} />
         </div>
         <div className='btn-right'>
           {operations.map(item => <OperationButton operation={item} />)}
