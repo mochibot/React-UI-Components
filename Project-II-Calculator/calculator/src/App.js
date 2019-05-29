@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import math from 'mathjs'
 import CalculatorDisplay from './components/DisplayComponents/CalculatorDisplay'
 import ActionButton from './components/ButtonComponents/ActionButton'
 import NumberButton from './components/ButtonComponents/NumberButton'
@@ -10,51 +11,68 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      total: 0
+      expression: ''
     }
     this.numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     this.operations = ['÷', '×', '-', '+', '='];
 
     this.handleClick = this.handleClick.bind(this);
-    this.clearClick = this.clearClick.bind(this);
+    this.reset = this.reset.bind(this);
+    this.calculate = this.calculate.bind(this);
   }
 
+
   handleClick(event) {
-    const value = event.target.getAttribute('data-value');
+    let value = event.target.getAttribute('data-value')
+    if (value === '÷') {
+      this.setState({
+        expression: this.state.expression + '/'
+      })
+    } else if (value === '×') {
+      this.setState({
+        expression: this.state.expression + '*'
+      })
+    } else if (value === '=') {
+      this.calculate();
+    } else {
+      this.setState({
+        expression: this.state.expression + value
+      })
+    }
+  }
+
+  calculate() {
     this.setState({
-      total: value
+      expression: math.eval(this.state.expression)
     })
   }
 
-  clearClick(event) {
+  reset() {
     this.setState({
-      total: 0
+      expression: ''
     })
   }
   
   render() {
     return (
       <div className='calculator-container'>
-        <CalculatorDisplay total={this.state.total}/>
+        <CalculatorDisplay total={this.state.expression}/>
         <div className='btn-container'>
           <div className='btn-left'>
-            <ActionButton action={'clear'} onClick={this.clearClick} />
+            <ActionButton value={'clear'} onClick={this.reset} />
             <div className ='number-pad'>
               {this.numbers.map(item => <NumberButton value={item} key={item} onClick={this.handleClick} />)}
             </div>
-            <ActionButton action={0} onClick={this.clearClick}/>
+            <ActionButton value={0} onClick={this.handleClick}/>
           </div>
           <div className='btn-right'>
-            {this.operations.map(item => <OperationButton operation={item} key={item} />)}
+            {this.operations.map(item => <OperationButton value={item} key={item} onClick={this.handleClick}/>)}
           </div>
         </div>
       </div>
     );
   };
 }
-
-
-
 
 
 /* 
