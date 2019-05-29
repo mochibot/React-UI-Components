@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+}
+
+button {
+  display: inline-block;
+  border: none;
+  margin: 0;
+  text-decoration: none;
+  background: white;
+  color: black;
+  font-size: 45px;
+}
+
+.calculator-container {
+  width: 450px;
+  margin: 0 auto;
+  border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+}
